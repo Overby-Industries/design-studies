@@ -1,0 +1,81 @@
+x_ft,point,y_ft,z_ft,station_label
+0,1,0.00,0.00,Nose tip (closes to a point)
+0,2,0.00,0.00,Nose tip (closes to a point)
+0,3,0.00,0.00,Nose tip (closes to a point)
+0,4,0.00,0.00,Nose tip (closes to a point)
+0,5,0.00,0.00,Nose tip (closes to a point)
+0,6,0.00,0.00,Nose tip (closes to a point)
+0,7,0.00,0.00,Nose tip (closes to a point)
+0,8,0.00,0.00,Nose tip (closes to a point)
+0,9,0.00,0.00,Nose tip (closes to a point)
+0,10,0.00,0.00,Nose tip (closes to a point)
+8,1,0.00,5.70,Crew pod
+8,2,0.90,5.02,Crew pod
+8,3,1.03,1.35,Crew pod
+8,4,3.00,0.66,Crew pod
+8,5,1.95,0.15,Crew pod
+8,6,0.00,0.00,Crew pod
+8,7,-1.95,0.15,Crew pod
+8,8,-3.00,0.66,Crew pod
+8,9,-1.03,1.35,Crew pod
+8,10,-0.90,5.02,Crew pod
+20,1,0.00,8.50,Canopy / cargo-bay spine (max spine height)
+20,2,2.10,7.52,Canopy / cargo-bay spine (max spine height)
+20,3,2.42,2.15,Canopy / cargo-bay spine (max spine height)
+20,4,7.00,1.10,Canopy / cargo-bay spine (max spine height)
+20,5,4.55,0.15,Canopy / cargo-bay spine (max spine height)
+20,6,0.00,0.00,Canopy / cargo-bay spine (max spine height)
+20,7,-4.55,0.15,Canopy / cargo-bay spine (max spine height)
+20,8,-7.00,1.10,Canopy / cargo-bay spine (max spine height)
+20,9,-2.42,2.15,Canopy / cargo-bay spine (max spine height)
+20,10,-2.10,7.52,Canopy / cargo-bay spine (max spine height)
+35,1,0.00,9.00,Blend zone start
+35,2,3.30,8.10,Blend zone start
+35,3,3.79,3.15,Blend zone start
+35,4,11.00,1.65,Blend zone start
+35,5,7.15,0.15,Blend zone start
+35,6,0.00,0.00,Blend zone start
+35,7,-7.15,0.15,Blend zone start
+35,8,-11.00,1.65,Blend zone start
+35,9,-3.79,3.15,Blend zone start
+35,10,-3.30,8.10,Blend zone start
+50,1,0.00,8.80,Max width -- wing root blend
+50,2,4.20,8.05,Max width -- wing root blend
+50,3,4.83,3.95,Max width -- wing root blend
+50,4,14.00,2.09,Max width -- wing root blend
+50,5,9.10,0.15,Max width -- wing root blend
+50,6,0.00,0.00,Max width -- wing root blend
+50,7,-9.10,0.15,Max width -- wing root blend
+50,8,-14.00,2.09,Max width -- wing root blend
+50,9,-4.83,3.95,Max width -- wing root blend
+50,10,-4.20,8.05,Max width -- wing root blend
+70,1,0.00,7.50,Blend zone end
+70,2,3.75,6.90,Blend zone end
+70,3,4.31,3.65,Blend zone end
+70,4,12.50,1.93,Blend zone end
+70,5,8.12,0.15,Blend zone end
+70,6,0.00,0.00,Blend zone end
+70,7,-8.12,0.15,Blend zone end
+70,8,-12.50,1.93,Blend zone end
+70,9,-4.31,3.65,Blend zone end
+70,10,-3.75,6.90,Blend zone end
+95,1,0.00,5.50,Aft taper
+95,2,2.40,5.05,Aft taper
+95,3,2.76,2.65,Aft taper
+95,4,8.00,1.38,Aft taper
+95,5,5.20,0.15,Aft taper
+95,6,0.00,0.00,Aft taper
+95,7,-5.20,0.15,Aft taper
+95,8,-8.00,1.38,Aft taper
+95,9,-2.76,2.65,Aft taper
+95,10,-2.40,5.05,Aft taper
+120,1,0.00,3.80,Boat-tail / engine stations
+120,2,1.50,3.50,Boat-tail / engine stations
+120,3,1.72,1.95,Boat-tail / engine stations
+120,4,5.00,0.99,Boat-tail / engine stations
+120,5,3.25,0.15,Boat-tail / engine stations
+120,6,0.00,0.00,Boat-tail / engine stations
+120,7,-3.25,0.15,Boat-tail / engine stations
+120,8,-5.00,0.99,Boat-tail / engine stations
+120,9,-1.72,1.95,Boat-tail / engine stations
+120,10,-1.50,3.50,Boat-tail / engine stations

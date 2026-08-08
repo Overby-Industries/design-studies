@@ -1,0 +1,7 @@
+# Blender/FreeCAD autosave backups -- never worth versioning, the real
+# .blend/.FCStd file is already tracked by git itself.
+*.blend1
+*.FCBak
+
+# See docs/asset-inventory.md before committing raw .blend files -- needs
+# Git LFS set up first.

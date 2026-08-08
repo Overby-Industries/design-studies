@@ -1,0 +1,47 @@
+<svg viewBox="0 0 620 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="620" height="400" fill="#ffffff"/>
+  <text x="310" y="22" font-size="14" font-weight="bold" fill="#2c3e50" text-anchor="middle">Reading a root locus graph (schematic — not your actual numbers)</text>
+
+  <!-- unstable half-plane shading (real part > 0) -->
+  <rect x="330" y="45" width="220" height="300" fill="#e07a5f" opacity="0.12"/>
+  <text x="540" y="60" font-size="11" fill="#b1462f" text-anchor="middle">unstable</text>
+  <text x="150" y="60" font-size="11" fill="#3d6b52" text-anchor="middle">stable</text>
+
+  <!-- axes -->
+  <line x1="330" y1="45" x2="330" y2="345" stroke="#333333" stroke-width="1.3"/>
+  <line x1="70" y1="195" x2="570" y2="195" stroke="#333333" stroke-width="1.3"/>
+  <text x="565" y="212" font-size="11.5" fill="#333333" text-anchor="end">Real part σ (damping)</text>
+  <text x="330" y="360" font-size="11" fill="#333333" text-anchor="middle">σ = 0</text>
+  <text x="335" y="55" font-size="12" fill="#333333">Imaginary part ω/2π (frequency)</text>
+
+  <!-- longitudinal modes (blue) -->
+  <g fill="#3a6ea5">
+    <circle cx="300" cy="170" r="5"/>
+    <circle cx="300" cy="220" r="5"/>
+    <circle cx="190" cy="100" r="5"/>
+    <circle cx="190" cy="290" r="5"/>
+  </g>
+  <text x="300" y="150" font-size="11" fill="#3a6ea5" text-anchor="middle">phugoid pair</text>
+  <text x="300" y="240" font-size="10" fill="#3a6ea5" text-anchor="middle">(slow, lightly damped)</text>
+  <text x="140" y="95" font-size="11" fill="#3a6ea5" text-anchor="middle">short-period pair</text>
+  <text x="140" y="300" font-size="10" fill="#3a6ea5" text-anchor="middle">(fast, well damped)</text>
+
+  <!-- lateral modes (orange) -->
+  <g fill="#c96a1f">
+    <circle cx="345" cy="195" r="5"/>
+    <circle cx="230" cy="195" r="5"/>
+    <circle cx="270" cy="130" r="5"/>
+    <circle cx="270" cy="260" r="5"/>
+  </g>
+  <text x="345" y="215" font-size="11" fill="#c96a1f" text-anchor="middle">spiral</text>
+  <text x="345" y="228" font-size="10" fill="#c96a1f" text-anchor="middle">(often unstable)</text>
+  <text x="215" y="215" font-size="11" fill="#c96a1f" text-anchor="middle">roll damping</text>
+  <text x="270" y="115" font-size="11" fill="#c96a1f" text-anchor="middle">Dutch roll pair</text>
+
+  <!-- legend -->
+  <circle cx="95" cy="380" r="5" fill="#3a6ea5"/>
+  <text x="106" y="384" font-size="11" fill="#333333">longitudinal (4 modes)</text>
+  <circle cx="300" cy="380" r="5" fill="#c96a1f"/>
+  <text x="311" y="384" font-size="11" fill="#333333">lateral (4 modes)</text>
+
+</svg>

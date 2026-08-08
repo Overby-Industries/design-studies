@@ -1,0 +1,56 @@
+<svg viewBox="0 0 460 332" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="460" height="332" fill="#ffffff"/>
+  <text x="230" y="20" font-size="14" font-weight="bold" fill="#2c3e50" text-anchor="middle">"Set Flap" — one section, TE flap shown deflected</text>
+
+  <!-- chordline -->
+  <line x1="50" y1="180" x2="400" y2="180" stroke="#bbbbbb" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- main airfoil body (forward of hinge), fixed -->
+  <path d="M 60,180
+           C 80,140 120,130 180,132
+           C 230,133 265,145 285,152
+           L 285,208
+           C 265,215 230,227 180,228
+           C 120,230 80,220 60,180 Z"
+        fill="#dbe4ef" stroke="#33475b" stroke-width="2"/>
+
+  <!-- flap, neutral position (ghost outline) -->
+  <path d="M 285,152 C 320,158 355,168 380,178 L 380,182 C 355,192 320,202 285,208 Z"
+        fill="none" stroke="#33475b" stroke-width="1.2" stroke-dasharray="3,2" opacity="0.55"/>
+
+  <!-- flap, deflected position (rotated about hinge) -->
+  <g transform="rotate(22 285 180)">
+    <path d="M 285,152 C 320,158 355,168 380,178 L 380,182 C 355,192 320,202 285,208 Z"
+          fill="#f4a261" opacity="0.55" stroke="#8a3324" stroke-width="2"/>
+  </g>
+
+  <!-- hinge marker -->
+  <circle cx="285" cy="180" r="4.5" fill="#ffffff" stroke="#8a3324" stroke-width="2"/>
+  <line x1="285" y1="168" x2="285" y2="192" stroke="#8a3324" stroke-width="1"/>
+  <line x1="273" y1="180" x2="297" y2="180" stroke="#8a3324" stroke-width="1"/>
+
+  <!-- deflection angle arc -->
+  <path d="M 335,178 A 50 50 0 0 1 330,197" fill="none" stroke="#8a3324" stroke-width="1.3"/>
+  <text x="345" y="200" font-size="12" fill="#8a3324">δ</text>
+
+  <!-- labels -->
+  <text x="285" y="140" font-size="11" fill="#33475b" text-anchor="middle">hinge (x/c ≈ 0.70–0.80)</text>
+  <line x1="285" y1="145" x2="285" y2="168" stroke="#33475b" stroke-width="1"/>
+
+  <text x="150" y="115" font-size="11" fill="#33475b" text-anchor="middle">fixed forward section</text>
+
+  <text x="400" y="150" font-size="11" fill="#8a3324" text-anchor="middle">flap, deflected</text>
+  <text x="400" y="163" font-size="11" fill="#8a3324" text-anchor="middle">(TE down = positive δ)</text>
+
+  <text x="60" y="90" font-size="11" fill="#666666" text-anchor="middle">optional LE flap</text>
+  <path d="M 60,180 C 65,168 75,160 90,158" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="2,2"/>
+  <g transform="rotate(-15 65 172)">
+    <path d="M 60,180 C 63,172 70,166 82,163" fill="none" stroke="#666666" stroke-width="1.6"/>
+  </g>
+
+  <text x="230" y="255" font-size="11.5" fill="#333333" text-anchor="middle">Set Flap asks for: LE and/or TE checkbox, hinge position along the chord,</text>
+  <text x="230" y="270" font-size="11.5" fill="#333333" text-anchor="middle">hinge position within the section depth, and the deflection angle.</text>
+  <text x="230" y="290" font-size="10.5" fill="#888888" text-anchor="middle">For a Type 7 stability run, the baked-in angle resets to 0 and is swept by</text>
+  <text x="230" y="303" font-size="10.5" fill="#888888" text-anchor="middle">Control Parameters Min/Max — bake in a real angle only for a fixed-deflection</text>
+  <text x="230" y="316" font-size="10.5" fill="#888888" text-anchor="middle">polar (Type 1/2/4).</text>
+</svg>

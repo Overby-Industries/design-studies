@@ -1,0 +1,53 @@
+<svg viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="700" height="340" fill="#ffffff"/>
+
+  <text x="350" y="20" font-size="14" font-weight="bold" fill="#2c3e50" text-anchor="middle">One frame's cross-section — Station x = 50 ft (double-bubble: spine over lifting-body belly)</text>
+
+  <!-- axis indicator -->
+  <g stroke="#666666" stroke-width="1.5">
+    <line x1="40" y1="300" x2="40" y2="250"/>
+    <line x1="40" y1="300" x2="90" y2="300"/>
+  </g>
+  <polygon points="40,246 35,256 45,256" fill="#666666"/>
+  <polygon points="94,300 84,295 84,305" fill="#666666"/>
+  <text x="46" y="248" font-size="12" fill="#666666">Z (up)</text>
+  <text x="96" y="304" font-size="12" fill="#666666">Y (right)</text>
+
+  <!-- centerline -->
+  <line x1="350" y1="95" x2="350" y2="290" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- cross-section polygon, points from the worked table (station x=50 ft) -->
+  <polygon points="350,104 434,119 447,201 630,238 532,277 350,280 168,277 70,238 253,201 266,119"
+           fill="#dbe4ef" stroke="#33475b" stroke-width="2.2" stroke-linejoin="round"/>
+
+  <!-- clockwise direction arrow near point 1-2 -->
+  <path d="M 370,108 A 40 40 0 0 1 420,124" fill="none" stroke="#8a3324" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#8a3324"/>
+    </marker>
+  </defs>
+  <text x="440" y="100" font-size="11" fill="#8a3324">clockwise, viewed from the nose</text>
+
+  <!-- numbered points -->
+  <g font-size="12" fill="#ffffff" text-anchor="middle">
+    <circle cx="350" cy="104" r="10" fill="#8a3324"/><text x="350" y="108">1</text>
+    <circle cx="434" cy="119" r="10" fill="#8a3324"/><text x="434" y="123">2</text>
+    <circle cx="447" cy="201" r="10" fill="#8a3324"/><text x="447" y="205">3</text>
+    <circle cx="630" cy="238" r="10" fill="#8a3324"/><text x="630" y="242">4</text>
+    <circle cx="532" cy="277" r="10" fill="#8a3324"/><text x="532" y="281">5</text>
+    <circle cx="350" cy="280" r="10" fill="#8a3324"/><text x="350" y="284">6</text>
+    <circle cx="168" cy="277" r="10" fill="#8a3324"/><text x="168" y="281">7</text>
+    <circle cx="70"  cy="238" r="10" fill="#8a3324"/><text x="70" y="242">8</text>
+    <circle cx="253" cy="201" r="10" fill="#8a3324"/><text x="253" y="205">9</text>
+    <circle cx="266" cy="119" r="10" fill="#8a3324"/><text x="266" y="123">10</text>
+  </g>
+
+  <!-- feature labels -->
+  <text x="350" y="90" font-size="11" fill="#33475b" text-anchor="middle">spine / canopy roof</text>
+  <text x="630" y="222" font-size="11" fill="#33475b" text-anchor="middle">chine</text>
+  <text x="630" y="256" font-size="11" fill="#33475b" text-anchor="middle">(widest point)</text>
+  <text x="350" y="300" font-size="11" fill="#33475b" text-anchor="middle">belly centerline</text>
+
+  <text x="350" y="322" font-size="11" fill="#888888" text-anchor="middle">Enter points 1–10 in the frame's point table in this order — n must be identical for every frame in the body.</text>
+</svg>
