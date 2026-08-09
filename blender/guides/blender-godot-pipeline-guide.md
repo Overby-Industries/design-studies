@@ -54,7 +54,7 @@ Each major section is self-contained and skimmable — headers to scan, numbered
 
 Callout boxes like this mark places where the two projects genuinely diverge:
 
-> **⚠ DIVERGES:** A note like this means "don't carry this rule into the other project."
+> **DIVERGES:** A note like this means "don't carry this rule into the other project."
 
 ---
 
@@ -95,9 +95,9 @@ A small mining ship and a larger mothership are both simple hard-surface jobs. R
 7. **Center the model on the world origin** (0,0,0) — use `Shift+C` to reset the 3D cursor to the origin before you start blocking out, and `Object` → `Set Origin` → `Origin to Geometry` if the pivot drifts. Godot's sprite convention assumes centered art.
 8. **Nose points +X.** Build to this convention from the start so the camera setup in 2.4 doesn't need extra compensating rotation.
 
-> **⚠ DIVERGES:** Topology cleanliness matters far less here than in Project 2. This is a one-off still image, not a deforming or close-up real-time asset — n-gons and slightly messy geometry are forgivable as long as the silhouette and shading read correctly from the locked camera angle. Don't over-invest in "proper" topology at the expense of just getting the shape right; save that discipline for Helga (3.4).
+> **DIVERGES:** Topology cleanliness matters far less here than in Project 2. This is a one-off still image, not a deforming or close-up real-time asset — n-gons and slightly messy geometry are forgivable as long as the silhouette and shading read correctly from the locked camera angle. Don't over-invest in "proper" topology at the expense of just getting the shape right; save that discipline for Helga (3.4).
 
-> **⚠ DIVERGES:** Blender's real-world unit scale is cosmetic here. Only the final render's **pixel aspect ratio** matters (see 2.7) — the game scales the PNG to whatever target size it wants. Model at whatever scale feels comfortable to work with (e.g., treating 1 Blender unit ≈ 1 meter so the ship "feels" human-vehicle-sized is a fine mental crutch), then let the camera's orthographic scale (2.4) and render resolution (2.7) do the real framing work. This is the opposite of Helga, where scale is physically load-bearing.
+> **DIVERGES:** Blender's real-world unit scale is cosmetic here. Only the final render's **pixel aspect ratio** matters (see 2.7) — the game scales the PNG to whatever target size it wants. Model at whatever scale feels comfortable to work with (e.g., treating 1 Blender unit ≈ 1 meter so the ship "feels" human-vehicle-sized is a fine mental crutch), then let the camera's orthographic scale (2.4) and render resolution (2.7) do the real framing work. This is the opposite of Helga, where scale is physically load-bearing.
 
 Do not model thruster flame, drill glow, or window lighting — see 2.1.
 
@@ -120,7 +120,7 @@ Any other angle breaks this the moment the ship turns more than a few degrees:
 
 **Mothership / static hazards / props (never rotate — only moved or scaled) → free to use whatever angle looks best,** typically a nicer fixed 3/4 view, because that render is always shown at the one orientation it was captured at. There's no rotation to expose the trick.
 
-> **⚠ DIVERGES:** In Project 2, camera angle in Blender is irrelevant to the final product — Godot's free-flying camera generates its own view of the live mesh at runtime. The entire concept of "the camera angle is baked into the art" doesn't apply there.
+> **DIVERGES:** In Project 2, camera angle in Blender is irrelevant to the final product — Godot's free-flying camera generates its own view of the live mesh at runtime. The entire concept of "the camera angle is baked into the art" doesn't apply there.
 
 ---
 
@@ -158,9 +158,9 @@ Practical steps:
 3. **Use Ambient Occlusion for depth cues, not directional shadow.** In current Blender (4.2+), Eevee Next folded the old standalone "Ambient Occlusion" panel into ray tracing — enable it via **Render Properties → `Raytracing`** (check the box to enable, then the AO-related falloff options live in that same panel). Cycles computes equivalent occlusion as part of its normal light transport with no separate toggle needed.
 4. **A solid default recipe**: low-to-medium World strength for flat fill + one soft light along the camera axis + Raytracing/AO enabled. Dimensional enough to read as a 3D object, flat enough to survive rotation.
 
-> **⚠ DIVERGES — mothership & static props**: none of this restriction applies. Since it's only ever shown at one fixed orientation, use normal 3-point lighting (key + fill + rim) for a more dramatic, dimensional look. A strong angled key light is *encouraged* here, not banned.
+> **DIVERGES — mothership & static props**: none of this restriction applies. Since it's only ever shown at one fixed orientation, use normal 3-point lighting (key + fill + rim) for a more dramatic, dimensional look. A strong angled key light is *encouraged* here, not banned.
 
-> **⚠ DIVERGES — Project 2**: Helga's lighting is not baked at all — it's real Godot lights (sun, etc.) hitting a real PBR material in real time, changing constantly as the aircraft flies. The entire "will this shadow look wrong when rotated" problem is specific to the pre-rendered pipeline and doesn't exist for Helga.
+> **DIVERGES — Project 2**: Helga's lighting is not baked at all — it's real Godot lights (sun, etc.) hitting a real PBR material in real time, changing constantly as the aircraft flies. The entire "will this shadow look wrong when rotated" problem is specific to the pre-rendered pipeline and doesn't exist for Helga.
 
 ---
 
@@ -245,7 +245,7 @@ Don't consider a render final until you've actually watched it rotate. Two ways 
 
 Nothing here can be "faked" the way a pre-rendered sprite can — there's no single locked camera angle to hide behind, and the lighting is out of your hands at modeling time (Godot's sun/lights do that live). The model, materials, and topology all have to be genuinely correct, because the camera is free and the light is real.
 
-> **⚠ DIVERGES:** If you find yourself thinking about camera angles, baked shadows, or transparent PNG settings while working on Helga, stop — those are Project 1 concepts and don't apply here at all.
+> **DIVERGES:** If you find yourself thinking about camera angles, baked shadows, or transparent PNG settings while working on Helga, stop — those are Project 1 concepts and don't apply here at all.
 
 ---
 
@@ -325,7 +325,7 @@ XFLR5's wing definition works in discrete stations with straight-line interpolat
 - Build at **literal real-world scale**: keep Blender's scene unit at meters (the default) and model the actual dimensions — 100 ft wingspan ≈ **30.5 m**, 120 ft fuselage length ≈ **36.6 m**. This isn't optional the way it was for Project 1 — Helga's export must land in Godot as true 1:1 meters (3.7), and topology/texel-density decisions (3.5) both assume you're working at real scale as you go, not scaling up at the end.
 - Apply modifiers that add real geometry (Mirror, Bevel, Subdivision) before final export prep, or make sure "Apply Modifiers" is checked in the glTF exporter (3.7).
 
-> **⚠ DIVERGES:** This is the mirror image of the 2.2 divergence note — here, topology rigor is non-negotiable; in Project 1 it was explicitly the thing you were allowed to skimp on.
+> **DIVERGES:** This is the mirror image of the 2.2 divergence note — here, topology rigor is non-negotiable; in Project 1 it was explicitly the thing you were allowed to skimp on.
 
 ---
 
