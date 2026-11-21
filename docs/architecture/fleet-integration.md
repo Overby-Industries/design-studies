@@ -55,8 +55,10 @@ From `starlifter-os/docs/ai-advisory-layer-draft.md`:
 - OTF-1 `location` has no coordinates, only altitude/inclination/zone, so a
   position fix can be reported coarsely but not fully. Relative formation
   data (satnav-swarm's main output for a swarm) has no OTF-1 home yet.
-- The Jac roundtable engine does not yet consume ADV-1 requests; the schemas
-  and validator exist so that work has a fixed target.
+- The Jac roundtable engine consumes ADV-1 requests and is checked here, but
+  only against scripted models: it has never been run against a live LLM
+  provider, and its prompts and roles are first drafts (see ai-roundtable's
+  README). Nothing yet carries a human's approval back to the requester.
 
 ## Running the scenario
 

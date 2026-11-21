@@ -9,10 +9,13 @@ against the real schemas.
       -> depot + registry agree on the feedstock totals
       -> two equal-priority vehicles contend for a port
          -> Tier 1 advisory request (validated by ai-roundtable's ADV-1 rules)
+         -> ai-roundtable's Jac engine answers it with a recommendation
+            (scripted models; this step is skipped if jaclang/byllm are missing)
 
 Expects sibling checkouts under --workspace (default: the folder holding this
 repo): outpost-core, satnav-swarm, space-reclamation, ai-roundtable,
-telemetry-protocol. Needs `pip install jsonschema`.
+telemetry-protocol. Needs `pip install jsonschema`; for the last step also
+`pip install -r ai-roundtable/jac/requirements.txt`.
 
     python integration/run_scenario.py [--workspace DIR] [--quiet]
 """
@@ -116,7 +119,61 @@ def run(workspace: Path, log=print) -> dict:
     assert outpost.contention_to_advisory(emergency.contentions[0], "depot-1", now, now + timedelta(hours=1)) is None
     log("   emergency contention stays deterministic (Tier 0): no advisory generated")
 
-    return {"otf1_packets_checked": checked, "feedstock": summary, "advisory": request}
+    log("5. ai-roundtable: that same request through the Jac engine (scripted models stand in for LLMs)")
+    recommendation = run_roundtable(workspace, request, now, adv, log)
+
+    return {"otf1_packets_checked": checked, "feedstock": summary, "advisory": request,
+            "recommendation": recommendation}
+
+
+def run_roundtable(workspace: Path, request: dict, now: datetime, adv, log):
+    """Run the roundtable engine on `request` and check what comes back against the ADV-1
+    contract. The models are byllm's scripted `mockllm`, so this proves the plumbing between
+    the repos (not that any real model reasons well). Returns None, with a note, when jaclang
+    or byllm is not installed."""
+    try:
+        import jaclang  # noqa: F401  (installs the .jac import hook; must precede byllm)
+        from byllm.lib import MockRawResponse, Model
+    except ImportError:
+        log("   skipped: pip install -r ai-roundtable/jac/requirements.txt to run the engine here")
+        return None
+    sys.path.insert(0, str(workspace / "ai-roundtable" / "jac"))
+    from roundtable.brain import Brain
+    from roundtable.clock import Clock
+    from roundtable.engine import RunConfig, run_session
+    from roundtable.roster import AgentSeat, Roster
+    from roundtable.spec import AgentSpec
+
+    def say(**fields):
+        return MockRawResponse(content=json.dumps(fields))
+
+    def seat(role, outputs, critic=False):
+        spec = AgentSpec(role=role, brief=f"{role} (scripted)", model_name="mockllm",
+                         temperature=0.2, critic=critic, topics=[])
+        return AgentSeat(spec=spec, brain=Brain(model=Model(model_name="mockllm", config={"outputs": outputs})))
+
+    def position(choice, conf):
+        return say(choice=choice, rationale="scripted", confidence=conf, risks=[], references=[])
+
+    def vote(choice, conf):
+        return say(choice=choice, rationale="scripted", confidence=conf)
+
+    seats = [
+        seat("Logistics Officer", [position("swap", 0.7), position("swap", 0.7), vote("swap", 0.7)]),
+        seat("Resource Economist", [position("swap", 0.6), position("swap", 0.6), vote("swap", 0.6)]),
+        seat("Safety Officer", [say(issues=["arrival ETA for M1 is uncertain"], blocks=[], cases=[]),
+                                vote("default", 0.5)], critic=True),
+    ]
+    roster = Roster(seats=seats, briefer=seat("Briefer", ["Scripted briefing."]))
+    outcome = run_session(request, roster, RunConfig(), Clock(fixed=now))
+    assert outcome.status == "recommended", outcome.reasons
+    rec = outcome.recommendation
+    problems = adv.check(rec, request)
+    assert not problems, problems
+    assert rec["requiresHumanApproval"] is True and rec["recommendation"] in {"default", "swap"}
+    log(f"   valid ADV-1 recommendation: '{rec['recommendation']}' by {rec['process']['basis']}; "
+        f"{rec['nextActions'][0]}")
+    return rec
 
 
 def main(argv=None):
