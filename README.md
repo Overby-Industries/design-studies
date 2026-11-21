@@ -40,3 +40,7 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`CODE_OF_CONDUCT.md`](CODE_OF_COND
 ## License
 
 [Apache 2.0](LICENSE).
+
+## Cross-repo integration
+
+[`docs/architecture/fleet-integration.md`](docs/architecture/fleet-integration.md) describes how the system repos fit together; `integration/run_scenario.py` runs an end-to-end scenario across them and validates every packet against the OTF-1 schema.

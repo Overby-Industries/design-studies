@@ -1,0 +1,27 @@
+name: Cross-repo integration
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: "0 6 * * 1"   # weekly: catch drift when a sibling repo changes
+
+jobs:
+  scenario:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: design-studies
+      - name: Check out sibling repos
+        run: |
+          for r in outpost-core satnav-swarm space-reclamation ai-roundtable telemetry-protocol; do
+            git clone --depth 1 "https://github.com/Overby-Industries/$r.git" "$r"
+          done
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - run: pip install jsonschema
+      - run: python design-studies/integration/run_scenario.py --workspace .
