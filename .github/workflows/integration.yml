@@ -16,12 +16,29 @@ jobs:
         with:
           path: design-studies
       - name: Check out sibling repos
+        env:
+          # A change here is tested against the sibling repos' branch of the same
+          # name when they have one, so a change that spans repos is checked as a
+          # whole instead of failing until every other PR has merged. Anything
+          # else (main, the weekly run, an unrelated branch name) uses their
+          # default branch. Passed through the environment, not interpolated into
+          # the script, because a branch name is untrusted input.
+          BRANCH: ${{ github.head_ref || github.ref_name }}
         run: |
           for r in outpost-core satnav-swarm space-reclamation ai-roundtable telemetry-protocol; do
-            git clone --depth 1 "https://github.com/Overby-Industries/$r.git" "$r"
+            url="https://github.com/Overby-Industries/$r.git"
+            if git clone --depth 1 --branch "$BRANCH" "$url" "$r" 2>/dev/null; then
+              echo "$r: using branch $BRANCH"
+            else
+              git clone --depth 1 "$url" "$r"
+              echo "$r: using the default branch"
+            fi
           done
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
+          # Not "3.x": jaclang and byllm need >= 3.12, and byllm's dependency
+          # fastuuid ships wheels only up to a given Python, so the newest
+          # release can force a Rust source build. Pinned for reproducibility.
+          python-version: "3.12"
       - run: pip install jsonschema -r ai-roundtable/jac/requirements.txt
       - run: python design-studies/integration/run_scenario.py --workspace .
