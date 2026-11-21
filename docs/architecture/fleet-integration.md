@@ -65,10 +65,24 @@ From `starlifter-os/docs/ai-advisory-layer-draft.md`:
 Check out the repos side by side, then:
 
 ```
-pip install jsonschema
+pip install jsonschema -r ai-roundtable/jac/requirements.txt   # Python >= 3.12
 python design-studies/integration/run_scenario.py
 ```
 
 Needs siblings `outpost-core`, `satnav-swarm`, `space-reclamation`,
 `ai-roundtable` and `telemetry-protocol`. Every packet it builds is
-validated against the real OTF-1 schema.
+validated against the real OTF-1 schema. Without the second requirements file
+the last step (the roundtable engine) is skipped.
+
+### In CI
+
+The workflow (`.github/workflows/integration.yml`) checks out each sibling's
+branch of **the same name as the branch under test** when it exists, and its
+default branch otherwise. So a change that spans repos -- say a new field in
+`telemetry-protocol` plus the code that uses it -- is tested together, on
+branches named alike, instead of failing until every other PR has merged. A
+branch with no counterpart elsewhere, `main`, and the weekly run all test
+against the siblings' default branches.
+
+Merge order still matters once on `main`: the check on `main` runs against
+the siblings' `main`, so merge the repos a change depends on before this one.
